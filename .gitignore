@@ -1,0 +1,9 @@
+node_modules
+backup/
+documents/
+materials/
+*.sublime-*
+.tmp
+npm-debug.log
+htdocs/**/*.css
+htdocs/**/*.css.map

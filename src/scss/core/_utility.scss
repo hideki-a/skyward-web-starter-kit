@@ -1,0 +1,185 @@
+// # 相対値計算
+//
+// ## 引数:
+// * `newsize`: 目的のサイズ
+// * `context`: 継承したサイズ
+// * `unit`: 出力結果に付与される単位（Default: em）
+@function rs($newsize, $context, $unit:em) {
+	@if $unit == "%" {
+		@return #{$newsize/$context*100}#{$unit};
+	} @else {
+		@return #{$newsize/$context}#{$unit};
+	}
+}
+
+
+// # フォントファミリー
+//
+// ## 引数:
+// * `type`: フォントタイプ
+@mixin font-family($type) {
+	@if $type == sans-serif {
+		font-family: sans-serif;
+		@if $support-ie6 {
+			_font-family: 'MS PGothic', sans-serif;
+		}
+	} @else if $type == hiragino {
+		font-family: 'Hiragino Kaku Gothic Pro', Meiryo, 'MS PGothic', sans-serif;
+	} @else if $type == hiragino-without-meiryo {
+		font-family: 'Hiragino Kaku Gothic Pro', 'MS PGothic', sans-serif;
+	} @else if $type == mincho {
+		font-family: "Hiragino Mincho Pro", "HGS明朝E", "ＭＳ Ｐ明朝", serif;
+	}
+}
+
+
+// # グリッドモジュールの下方向マージン打ち消し
+//
+// ## 引数:
+// * `column`: 1行のカラム数
+// * `nestlevel`: ネストレベル
+
+// ## 参考:
+// http://blog.keithclark.co.uk/targeting-first-and-last-rows-in-css-grid-layouts/
+@mixin grid-lastrows-utility($column, $grid-item-tag: "li") {
+	$selector: &;
+	&:nth-child(#{$column}n+1):nth-last-child(-n+#{$column}),
+	&:nth-child(#{$column}n+1):nth-last-child(-n+#{$column}) ~ #{$grid-item-tag}{
+		margin-bottom: 0;
+	}
+}
+
+
+// # 下方向マージンユーティリティ
+//
+// ## 引数:
+// なし
+@mixin margin-utility {
+	.mb-non {
+		margin-bottom: 0 !important;
+	}
+}
+
+
+// # MTのエディタで挿入した画像のfloat強制解除
+//
+// ## 引数:
+// なし
+@mixin mt-float-clearing {
+	.mt-image-left,
+	.mt-image-right{
+		display: block;
+		float: none !important;
+		margin: 0 0 1em !important;
+	}
+}
+
+
+// # Clearfix
+// See Also: http://cssmojo.com/the-very-latest-clearfix-reloaded/
+//
+// ## 引数:
+// なし
+$clearfix-defined: false !default;
+@mixin skyward-clearfix {
+	@if not $clearfix-defined {
+		$clearfix-defined: true;
+		%clearfix{
+			&::after {
+				clear: both;
+				display: block;
+				content: "";
+			}
+		}
+	}
+}
+
+
+// Media Query
+// Inspiration: http://robots.thoughtbot.com/sasss-content-directive
+@mixin mq($width) {
+	@if unitless($width) {
+		$width: $width + px;
+	}
+
+	@media only screen and (max-width: $width) {
+		@content;
+	}
+}
+
+@mixin mq-min($width, $print: false) {
+  @if unitless($width) {
+    $width: $width + px;
+  }
+
+  @if $print {
+    @media only screen and (min-width: $width), print {
+      @content;
+    }
+  } @else {
+    @media only screen and (min-width: $width) {
+      @content;
+    }
+  }
+}
+
+
+// # マウスオーバー・フォーカススタイル設定
+//
+// ## 引数:
+// なし
+@mixin pointer-enter {
+	&:hover,
+	&:focus{
+		@content;
+	}
+}
+
+
+// # テーブルのスクロール
+//
+// ## 引数:
+// * `bp`: ブレークポイント
+@mixin tbl-scroll($bp: 767) {
+	@if unitless($bp) {
+		$bp: $bp + px;
+	}
+
+	display: table;
+	width: 100%;
+	@media screen and (max-width: $bp) {
+		display: block;
+		overflow-x: auto;
+		margin: 0 0 1em;
+		&::-webkit-scrollbar{
+			-webkit-appearance: none;
+			width: 14px;
+			height: 14px;
+		}
+		&::-webkit-scrollbar-thumb{
+			border-radius: 8px;
+			border: 3px solid #fff;
+			background-color: rgba(0, 0, 0, .3);
+		}
+	}
+}
+
+
+// # オブジェクトの埋め込み（マルチスクリーン対応）
+// レスポンシブWebデザインのページにGoogle Mapsなどを埋め込む際に利用
+//
+// ## 引数:
+// なし
+@mixin embed-responsive-object {
+	position: relative;
+	overflow: hidden;
+	padding-bottom: 56%;
+	height: 0;
+	iframe {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100% !important;
+		height: 100% !important;
+	}
+}
