@@ -9,7 +9,7 @@
     "build:scss": "node-sass 'src/scss/basic.scss' '.tmp/css/basic.css' --source-map-embed --output-style=expanded",
     "build:postcss": "postcss '.tmp/css/basic.css' -o 'htdocs/common/css/basic.css' -m -u autoprefixer css-mqpacker",
     "watch": "run-p watch:*",
-    "watch:scss": "node-sass 'src/scss/basic.scss' '.tmp/css/basic.css' --source-map-embed --output-style=expanded -w",
+    "watch:scss": "npm run build:scss && node-sass 'src/scss/basic.scss' '.tmp/css/basic.css' --source-map-embed --output-style=expanded -w",
     "watch:postcss": "postcss '.tmp/css/basic.css' -o 'htdocs/common/css/basic.css' -m -u autoprefixer css-mqpacker -w",
     "serve": "browser-sync start --config conf/bs-config.js",
     "test": "echo \"Error: no test specified\" && exit 1"
