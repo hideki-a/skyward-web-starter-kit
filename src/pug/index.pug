@@ -1,0 +1,10 @@
+extend /_template/_default
+include /_partial/_variable
+append variables
+  - var pageTitle = "Skyward Web Starter Kit"
+  - var pageDescription = siteDescription
+  - var isHomePage = true
+
+block content
+  main
+    p #{siteDescription}
