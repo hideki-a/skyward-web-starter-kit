@@ -8,3 +8,4 @@ npm-debug.log
 htdocs/**/*.html
 htdocs/**/*.css
 htdocs/**/*.css.map
+htdocs/**/*.js
