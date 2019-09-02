@@ -1,0 +1,12 @@
+extend /_template/_default
+include /_partial/_variable
+append variables
+  - var pageTitle = "Sitemap"
+  - var pageDescription = "sitemap page."
+
+block content
+  main
+    h1 #{pageTitle}
+    ul
+      li Home
+      li Sitemap

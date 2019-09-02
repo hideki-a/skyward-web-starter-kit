@@ -2,5 +2,11 @@ meta(charset="UTF-8")
 meta(name="viewport" content="width=device-width, initial-scale=1.0")
 meta(name="format-detection" content="telephone=no")
 meta(name="description" content=pageDescription)
-title #{pageTitle}
-link(rel="stylesheet" href="/common/css/basic.css")
+if dirNames
+  title #{pageTitle} | #{dirNames} | #{siteName}
+else if isHomePage
+  title #{pageTitle}
+else
+  title #{pageTitle} | #{siteName}
+block css
+  link(rel="stylesheet" href="/common/css/basic.css")
