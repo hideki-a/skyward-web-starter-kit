@@ -11,8 +11,6 @@
  |
  |
  */
-const browserSyncSSI = require('../node_modules/browsersync-ssi');
-
 module.exports = {
     server: 'htdocs/',
     port: 3501,
@@ -20,9 +18,5 @@ module.exports = {
     watch: true,
     ghostMode: false,
     browser: 'google chrome',
-    startPath: '/',
-    middleware: browserSyncSSI({
-      baseDir: './htdocs',
-      ext: '.html'
-    })
+    startPath: '/'
 };
