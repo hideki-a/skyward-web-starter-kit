@@ -80,17 +80,11 @@
 //
 // ## 引数:
 // なし
-$clearfix-defined: false !default;
-@mixin skyward-clearfix {
-	@if not $clearfix-defined {
-		$clearfix-defined: true;
-		%clearfix{
-			&::after {
-				clear: both;
-				display: block;
-				content: "";
-			}
-		}
+@mixin clearfix {
+	&::after {
+		clear: both;
+		display: block;
+		content: "";
 	}
 }
 

@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+@use "setting";
+@use "mixins";
+@use "core/utility";
+
 /* -----------------------------------------------------------
    Base
 ----------------------------------------------------------- */
@@ -9,22 +13,22 @@
 // }
 
 body{
-	@include font-family("hiragino");
+	@include utility.font-family("hiragino");
 	// line-height: rs(24,16, "");
-	color: $color;
+	color: setting.$color;
 	// -webkit-text-size-adjust: 100%;
 }
 
 a:link,
 a:visited{
-	color: $linkcolor;
+	color: setting.$linkcolor;
 	text-decoration: none;
 }
 
 a:hover,
 a:active,
 a:focus{
-	color: $hovercolor;
+	color: setting.$hovercolor;
 	text-decoration: underline;
 }
 

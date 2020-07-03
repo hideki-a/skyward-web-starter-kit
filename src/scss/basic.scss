@@ -1,22 +1,16 @@
 @charset "UTF-8";
 
-@import "setting";
-// @import "neat";
-@import "mixins";
-@import "core";
+@use "setting";
+@use "mixins";
+@use "core/utility";
 
-// @include reset-common;
 /* stylelint-disable */
-@import "normalize";
+@use "normalize";
 /* stylelint-enable */
-
-@import "base";
-@import "layout";
-@import "modules";
-@import "individual_pages";
-
-// Self Clearing
-@include skyward-clearfix;
+@use "base";
+@use "layout";
+@use "modules";
+@use "individual_pages";
 
 // Print
-@import "print";
+@use "print";
